@@ -4,7 +4,6 @@ export function ProductsNew ({onCreate}) {
     event.preventDefault();
     const params = new FormData(event.target);
     onCreate(params, () => event.target.reset());
-
   }
   return (
     <div>
@@ -14,10 +13,13 @@ export function ProductsNew ({onCreate}) {
             Name: <input name='name' id='name' type='text' />
           </div>
           <div>
+            Inventory: <input name='inventory' type='text' />
+          </div>
+          <div>
             Price: <input name='price' id='price' type='text' />
           </div>
           <div>
-            Image: <input name='image' id='image' type='text' />
+            Description: <input name='description' id='description' type='text' />
           </div>
           <div>
             Supplier ID: <input name='supplier_id' id='supplier_id' type='text' />
