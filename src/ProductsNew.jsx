@@ -1,0 +1,29 @@
+export function ProductsNew ({onCreate}) { 
+
+  const handleSubmit = (event) => { 
+    event.preventDefault();
+    const params = new FormData(event.target);
+    onCreate(params, () => event.target.reset());
+
+  }
+  return (
+    <div>
+      <h1>Create Product</h1>
+        <form onSubmit={handleSubmit}>
+          <div>
+            Name: <input name='name' id='name' type='text' />
+          </div>
+          <div>
+            Price: <input name='price' id='price' type='text' />
+          </div>
+          <div>
+            Image: <input name='image' id='image' type='text' />
+          </div>
+          <div>
+            Supplier ID: <input name='supplier_id' id='supplier_id' type='text' />
+          </div>
+          <button type='submit'>Create New</button>
+        </form>
+    </div>
+  );
+}3
