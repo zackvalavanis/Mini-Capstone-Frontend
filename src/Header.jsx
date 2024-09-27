@@ -1,7 +1,7 @@
 export function Header () { 
   return ( 
     <header>
-      <a href='#'>All Products!</a>
+      <h1>All Photos!</h1>
     </header>
   )
 }

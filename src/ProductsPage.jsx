@@ -1,10 +1,14 @@
-import { ProductsIndex } from './ProductsIndex'
-import { useState, useEffect } from 'react'
-import { ProductsNew } from './ProductsNew'
-import axios from 'axios'
+import { ProductsIndex } from './ProductsIndex';
+import { useState, useEffect } from 'react';
+import { ProductsNew } from './ProductsNew';
+import { ProductsShow } from './ProductsShow';
+import axios from 'axios';
+import { Modal } from './Modal';
 
 export function ProductsPage () { 
   const [ products, setProducts ] = useState([]); 
+  const [ ProductVisible, setProductVisible ] = useState(false);
+  const [ currentProduct, setCurrentProduct ] = useState ({});
 
   const handleIndex = () => { 
     console.log('handleIndex');
@@ -21,13 +25,27 @@ export function ProductsPage () {
     })
   }
 
+  const handleShow = (product) => { 
+    console.log('handleShow', product);
+    setProductVisible(true);
+    setCurrentProduct(product);
+  }
+
+  const handleClose = () => { 
+    console.log('handleClose');
+    setProductVisible(false);
+  }
+  
 useEffect( handleIndex, [] );
 
 
   return ( 
     <main>
-      <ProductsIndex products={products}/>
+      <ProductsIndex products={products} onShow={handleShow}/>
       <ProductsNew onCreate={handleCreate}/>
+      <Modal show={ProductVisible} onClose={handleClose}>
+        <ProductsShow product={currentProduct}/>
+      </Modal>
     </main>
   )
 }

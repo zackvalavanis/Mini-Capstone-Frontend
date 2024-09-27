@@ -1,7 +1,7 @@
-export function ProductsIndex({ products }) {
+export function ProductsIndex({ products, onShow }) {
   return (
     <div>
-      <h1>All Products!</h1>
+      <h4>All Products!</h4>
       {products.map((product) => (
         <div key={product.id}>
           <h2>Name: {product.name}</h2>
@@ -13,6 +13,7 @@ export function ProductsIndex({ products }) {
             alt={product.name}
           /> 
           )}
+          <button onClick={() => onShow(product)}>More Info</button>
         </div>
       ))}
     </div>
