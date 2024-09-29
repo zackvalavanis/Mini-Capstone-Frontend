@@ -12,7 +12,7 @@ export function ProductsShow ( {product, onUpdate, onDestroy} ) {
         <p>Price: {product.price}</p>
         <p>Description: {product.description}</p>
         <form onSubmit={handleSubmit}>
-        <div>
+        <div className='show'>
             Name: <input defaultValue={product.name} name='name' id='name' type='text' />
           </div>
           <div>

@@ -1,7 +1,41 @@
+/* Global styles */
 html {
   scroll-behavior: smooth;
+  font-family: Arial, sans-serif;
+  /* Clean font for the entire app */
+  background-color: #f0f4f8;
+  /* Light background for better contrast */
+  color: #333;
+  /* Dark text color */
 }
 
-.images {
-  width: 25%;
+/* Container for all products */
+.products-container {
+  max-width: 1200px;
+  /* Limit container width */
+  margin: auto;
+  /* Center the container */
+  padding: 20px;
+  /* Add padding around the container */
+}
+
+/* Header styles */
+h4 {
+  text-align: center;
+  /* Center the header */
+  font-size: 2em;
+  /* Increase font size for visibility */
+  margin-bottom: 30px;
+  /* Space below the header */
+}
+
+/* Individual product card */
+div {
+  background-color: #ffffff;
+  /* White background for each product */
+  border-radius: 10px;
+  /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow */
+  mar
 }

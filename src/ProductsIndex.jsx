@@ -11,9 +11,9 @@ export function ProductsIndex({ products, onShow }) {
           
           {/* Render images_with_default with the correct image reference */}
           {product.images_with_default.map((image) => (
-            <img key={image.id} src={image.image_url} alt="Product Image" />
+            <img className='image' key={image.id} src={image.image_url} alt="Product Image" />
           ))}
-          <button onClick={() => onShow(product)}>More Info</button>
+          <button className='moreInfo' onClick={() => onShow(product)}>More Info</button>
         </div>
       ))}
     </div>

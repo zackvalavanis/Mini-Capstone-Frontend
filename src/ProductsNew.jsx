@@ -6,7 +6,7 @@ export function ProductsNew ({onCreate}) {
     onCreate(params, () => event.target.reset());
   }
   return (
-    <div>
+    <div id='create-product'>
       <h1>Create Product</h1>
         <form onSubmit={handleSubmit}>
           <div>
