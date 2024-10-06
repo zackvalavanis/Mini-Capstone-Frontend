@@ -1,16 +1,17 @@
 import axios from "axios";
+import { useNavigate } from 'react-router-dom'
 
 export function LogoutLink() {
+  const navigate = useNavigate();
+
   const handleClick = (event) => {
     event.preventDefault();
     delete axios.defaults.headers.common["Authorization"];
     localStorage.removeItem("jwt");
-    window.location.href = "/";
+    navigate('/loginPage');
   };
 
   return (
-    <a href="#" onClick={handleClick}>
-      Logout
-    </a>
+    <a className="dropdown-item" onClick={handleClick}>Logout</a>
   );
 }

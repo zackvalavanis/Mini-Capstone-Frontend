@@ -37,13 +37,8 @@ const router = createBrowserRouter([
               <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                   <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href="#">
+                    <a className="nav-link active" aria-current="page" href="/products">
                       Home
-                    </a>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link" href="#">
-                      Link
                     </a>
                   </li>
                   <li className="nav-item dropdown">
@@ -58,6 +53,14 @@ const router = createBrowserRouter([
                     </a>
                     <ul className="dropdown-menu">
                       <li>
+                        <a className="dropdown-item" href="/products/new">
+                          New Product
+                        </a>
+                      </li>
+                      <li>
+                        <hr className="dropdown-divider" />
+                      </li>
+                      <li>
                         <a className="dropdown-item" href="/LoginPage">
                           Login
                         </a>
@@ -68,15 +71,7 @@ const router = createBrowserRouter([
                         </a>
                       </li>
                       <li>
-                        <hr className="dropdown-divider" />
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="/products/new">
-                          New Product
-                        </a>
-                      </li>
-                      <li>
-                        <LogoutLink>Logout</LogoutLink>
+                        <LogoutLink className='dropdown-item'>Logout</LogoutLink>
                       </li>
                     </ul>
                   </li>
