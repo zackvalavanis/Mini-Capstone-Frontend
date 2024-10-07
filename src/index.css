@@ -2,11 +2,8 @@
 html {
   scroll-behavior: smooth;
   font-family: Arial, sans-serif;
-  /* Clean font for the entire app */
   background-color: #f0f4f8;
-  /* Light background for better contrast */
   color: #333;
-  /* Dark text color */
 }
 
 /* Container for all products */
@@ -17,6 +14,12 @@ html {
   /* Center the container */
   padding: 20px;
   /* Add padding around the container */
+  display: flex;
+  /* Use Flexbox */
+  flex-wrap: wrap;
+  /* Allow wrapping of cards */
+  justify-content: center;
+  /* Center cards in the container */
 }
 
 /* Header styles */
@@ -33,14 +36,23 @@ h4 {
 .card {
   background-color: #ffffff;
   /* White background for each product */
-  border-radius: 10px;
-  /* Rounded corners */
+  border-radius: 20px;
+  /* Adjusted radius for a more subtle effect */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   /* Subtle shadow */
-  margin-bottom: 20px;
-  /* Space below each card */
+  margin: 20px;
+  /* Increased space around each card */
   padding: 15px;
   /* Padding inside each card */
+  flex: 0 1 calc(25% - 40px);
+  /* Adjust to 4 cards per row, accounting for margin */
+  /* Change 25% to another value for more or fewer cards in a row */
+  display: flex;
+  /* Enable Flexbox for the card */
+  flex-direction: column;
+  /* Stack children vertically */
+  align-items: center;
+  /* Center children horizontally */
 }
 
 /* Card image */
@@ -50,5 +62,4 @@ h4 {
   width: 100%;
   /* Full width */
   height: auto;
-  /* Maintain aspect ratio */
-}
+  /* Maint
