@@ -6,13 +6,10 @@ import { ProductsNewPage } from './ProductsNewPage';
 import { SignupPage } from './SignupPage';
 import { LoginPage } from './LoginPage';
 import { ProductsIndexPage } from './ProductsIndexPage'
-// import { ProductsShowPage } from './ProductsShowPage'
+import { ProductShowPage } from './ProductShowPage';
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-
-
-
 
 const router = createBrowserRouter([
   {
@@ -44,12 +41,12 @@ const router = createBrowserRouter([
         path: '/products', 
         element: <ProductsIndexPage />, 
         loader: () => axios.get('http://localhost:3000/products.json').then(response => response.data)
+      },
+      { 
+        path: '/products/:id',
+        element: <ProductShowPage />, 
+        loader: ({params}) => axios.get(`http://localhost:3000/products/${params.id}.json`).then((response) => response.data)
       }
-      // { 
-      //   path: './products/:id',
-      //   element: <ProductsShowPage />, 
-      //   loader: () => axios.get
-      // }
     ],
   },
 ]);

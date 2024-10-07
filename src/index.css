@@ -30,12 +30,25 @@ h4 {
 }
 
 /* Individual product card */
-div {
+.card {
   background-color: #ffffff;
   /* White background for each product */
   border-radius: 10px;
   /* Rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   /* Subtle shadow */
-  mar
+  margin-bottom: 20px;
+  /* Space below each card */
+  padding: 15px;
+  /* Padding inside each card */
+}
+
+/* Card image */
+.card img {
+  border-radius: 10px;
+  /* Rounded corners for images */
+  width: 100%;
+  /* Full width */
+  height: auto;
+  /* Maintain aspect ratio */
 }

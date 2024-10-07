@@ -1,7 +1,7 @@
 // import { ProductsIndex } from './ProductsIndex';
 import { useState, useEffect } from 'react';
 // import { ProductsNew } from './ProductsNew';
-import { ProductsShow } from './ProductsShow';
+// import { ProductsShow } from './ProductsShow';
 import axios from 'axios';
 import { Modal } from './Modal';
 
@@ -66,7 +66,7 @@ export function ProductsPage () {
 
   return ( 
     <main>
-      {/* <ProductsIndex products={products} onShow={handleShow}/> */}
+      <ProductsIndex products={products} onShow={handleShow}/>
       {/* <ProductsNew onCreate={handleCreate}/> */}
       <Modal show={ProductVisible} onClose={handleClose}>
         <ProductsShow product={currentProduct} onUpdate={handleUpdate} onDestroy={handleDestroy}/>
