@@ -4,11 +4,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { Modal } from './Modal'
 import { ProductShowPage } from './ProductShowPage'
+import axios from 'axios'
 
 export function ProductsIndexPage () { 
   const products = useLoaderData();
   const [ productVisible, setProductVisible ] = useState(false);
   const [ currentProduct, setCurrentProduct ] = useState ({});
+  const [ carted_product, setCartedProduct] = useState([]);
+
 
 
   const onShow = (product) => { 
@@ -20,6 +23,16 @@ export function ProductsIndexPage () {
   const onPageClose = () => { 
     console.log('onPageClose');
     setProductVisible(false);
+  }
+
+  const handleSubmit = (event) => { 
+    event.preventDefault();
+    const params = new FormData(event.target);
+    axios.post('http://localhost:3000/carted_products.json', params).then((response) => { 
+      console.log(response.data);
+      setCartedProduct([...carted_product, response.data])
+      event.target.reset();
+    })
   }
 
 
@@ -51,6 +64,21 @@ export function ProductsIndexPage () {
         <div>
         <Modal show={productVisible} onClose={onPageClose}>
           <ProductShowPage product={currentProduct} />
+          <h1>Add New Product</h1>
+        <div>
+          <form onSubmit={handleSubmit}>
+          <div>
+            <input type='hidden' name='product_id' defaultValue={currentProduct.id} required/> 
+          </div>
+          <div>
+            Quantity: <input name='quantity' type='text' required />
+          </div>
+          <div>
+            <input type='hidden' defaultValue='carted' name='status' />
+          </div>
+          <button type='submit'>Add to Cart</button>
+          </form>
+        </div>
         </Modal>
         </div>
     </div>

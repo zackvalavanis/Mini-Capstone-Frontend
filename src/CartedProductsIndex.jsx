@@ -1,23 +1,19 @@
 import { useLoaderData } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import axios from 'axios';
-
-
+import axios from 'axios'
 
 
 export function CartedProductsIndex () { 
   const carted_products = useLoaderData();
 
-
   const handleSubmit = (event) => { 
     event.preventDefault();
-    const params = new FormData(event.target);
-    axios.post('http://localhost:3000/carted_products.json', params).then((response) => { 
+    axios.post('http://localhost:3000/orders.json').then((response) => { 
       console.log(response.data);
-      event.target.reset();
     })
   }
+
 
 // I will need to implement search by name rather than id.. I could do like if name = blah return product id.. 
 
@@ -33,19 +29,7 @@ export function CartedProductsIndex () {
             </li>
           </div>
         ))}
-        <h1>Add New Product</h1>
-        <form onSubmit={handleSubmit}>
-          <div>
-            Product: <input name='product_id' type='text' required/> 
-          </div>
-          <div>
-            Quantity: <input name='quantity' type='text' required />
-          </div>
-          <div>
-           Status: <input defaultValue='carted' />
-          </div>
-          <button type='submit'>Add Product to Cart</button>
-        </form>
+        <button type='button' onClick={handleSubmit}>Order</button>
       </div>
   )
 }

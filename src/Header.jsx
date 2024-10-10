@@ -46,7 +46,7 @@ export function Header() {
                     </li>
                     <li>
                       <Link className='dropdown-item' to="/CartedProducts">
-                        Carted Products
+                        Cart
                       </Link>
                     </li>
                     <li>
