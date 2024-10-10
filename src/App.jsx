@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
 import { Header } from './Header';
 import { Footer } from './Footer';
-import { ProductsPage } from './ProductsPage';
+import { CartedProductsIndex } from './CartedProductsIndex'
 import { ProductsNewPage } from './ProductsNewPage';
 import { SignupPage } from './SignupPage';
 import { LoginPage } from './LoginPage';
@@ -23,7 +23,8 @@ const router = createBrowserRouter([
     children: [
       { 
         path: '/',
-        element: <ProductsPage />
+        element: <ProductsIndexPage />,
+        loader: () => axios.get('http://localhost:3000/products.json').then(response => response.data)
       },
       { 
         path: '/LoginPage',
@@ -46,6 +47,13 @@ const router = createBrowserRouter([
         path: '/products/:id',
         element: <ProductShowPage />, 
         loader: ({params}) => axios.get(`http://localhost:3000/products/${params.id}.json`).then((response) => response.data)
+      }, 
+      { 
+        path: '/CartedProducts', 
+        element: <CartedProductsIndex />, 
+        loader: () => axios.get('http://localhost:3000/carted_products.json').then((response) => { 
+          return (response.data)
+        })
       }
     ],
   },

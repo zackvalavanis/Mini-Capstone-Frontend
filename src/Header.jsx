@@ -45,6 +45,11 @@ export function Header() {
                       </Link>
                     </li>
                     <li>
+                      <Link className='dropdown-item' to="/CartedProducts">
+                        Carted Products
+                      </Link>
+                    </li>
+                    <li>
                       <hr className="dropdown-divider" />
                     </li>
                     <li>
