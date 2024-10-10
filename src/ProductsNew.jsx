@@ -4,7 +4,7 @@ export function ProductsNew ({onCreate}) {
     event.preventDefault();
     const params = new FormData(event.target);
     onCreate(params, () => event.target.reset());
-  }
+  } 
   return (
     <div id='create-product'>
       <h1>Create Product</h1>
