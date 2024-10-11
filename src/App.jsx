@@ -7,7 +7,8 @@ import { SignupPage } from './SignupPage';
 import { LoginPage } from './LoginPage';
 import { ProductsIndexPage } from './ProductsIndexPage'
 import { ProductShowPage } from './ProductShowPage';
-import axios from 'axios'
+import { OrderShowPage } from './OrderShowPage';
+import axios from 'axios';
 import { OrdersIndex } from './OrdersIndex';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
@@ -63,6 +64,14 @@ const router = createBrowserRouter([
         loader: () => axios.get('http://localhost:3000/orders.json').then((response) => { 
           console.log(response.data);
           return response.data;
+        })
+      }, 
+      { 
+        path: `/orders/:id`,
+        element: <OrderShowPage />,
+        loader: ({params}) => axios.get(`http://localhost:3000/orders/${params.id}.json`).then((response) => { 
+          console.log(response.data);
+          return response.data
         })
       }
     ],

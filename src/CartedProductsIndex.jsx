@@ -23,6 +23,7 @@ export function CartedProductsIndex () {
     event.preventDefault();
     axios.post('http://localhost:3000/orders.json').then((response) => { 
       console.log(response.data);
+      // navigate('/order/:id')
     })
   }
 
