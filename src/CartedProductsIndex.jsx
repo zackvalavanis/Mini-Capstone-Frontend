@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 
 export function CartedProductsIndex() {
-  const carted_products = useLoaderData(); // Ensure this is correctly imported
+  const carted_products = useLoaderData() || []; // Default to an empty array
   const navigate = useNavigate();
 
   const isLoggedIn = () => {
@@ -38,7 +38,12 @@ export function CartedProductsIndex() {
 
   // Calculate subtotal, tax, and total
   const calculateTotals = () => {
-    const subtotal = carted_products.reduce((acc, item) => acc + (item.product.price || 0) * item.quantity, 0);
+    if (!Array.isArray(carted_products)) return { subtotal: 0, tax: 0, total: 0 };
+
+    const subtotal = carted_products.reduce((acc, item) => {
+      const price = item.product?.price || 0; // Use optional chaining to avoid errors
+      return acc + price * item.quantity;
+    }, 0);
     const tax = subtotal * 0.1; // Assuming a 10% tax rate
     const total = subtotal + tax;
     return { subtotal, tax, total };
@@ -53,15 +58,19 @@ export function CartedProductsIndex() {
   return (
     <div>
       <h1>Your Cart</h1>
-      {carted_products.map((carted_product) => (
-        <div className='carted-product' key={carted_product.id}>
-          <li>
-            {carted_product.product.name}: Quantity: {carted_product.quantity} 
-            Price: ${getPrice(carted_product.product.price)} 
-            <img src={carted_product.images[0].image_url} alt={carted_product.product.name} />
-          </li>
-        </div>
-      ))}
+      {Array.isArray(carted_products) && carted_products.length > 0 ? (
+        carted_products.map((carted_product) => (
+          <div className='carted-product' key={carted_product.id}>
+            <li>
+              {carted_product.product?.name}: Quantity: {carted_product.quantity} 
+              Price: ${getPrice(carted_product.product?.price)} 
+              <img src={carted_product.images[0]?.image_url} alt={carted_product.product?.name} />
+            </li>
+          </div>
+        ))
+      ) : (
+        <p>No products in your cart.</p> // Display a message if the cart is empty
+      )}
       <div>
         <h3>Subtotal: ${subtotal.toFixed(2)}</h3>
         <h3>Tax: ${tax.toFixed(2)}</h3>
