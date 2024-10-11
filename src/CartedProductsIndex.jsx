@@ -19,11 +19,12 @@ export function CartedProductsIndex () {
   }, [navigate]); // No need to include isLoggedIn here since it’s a function
   
 
-  const handleSubmit = (event) => { 
-    event.preventDefault();
+  const handleSubmit = () => { 
+    console.log('handleSubmit')
     axios.post('http://localhost:3000/orders.json').then((response) => { 
       console.log(response.data);
-      // navigate('/order/:id')
+      const orderId = response.data.order.id;
+      navigate(`/orders/${orderId}`)
     })
   }
 
