@@ -3,8 +3,6 @@ import { useLoaderData } from 'react-router-dom';
 export function OrderShowPage() {
   const order = useLoaderData(); // Get the single order object
 
-  console.log("Order from useLoaderData:", order); // Check the structure here
-
   // Check if order is defined
   if (!order) {
     return <p>No order found.</p>;
