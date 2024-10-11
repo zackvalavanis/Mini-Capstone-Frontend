@@ -28,6 +28,11 @@ export function Header() {
                     Home
                   </Link>
                 </li>
+                <li className='nav-item'>
+                    <Link className='nav-link active' aria-current='page' to="/CartedProducts">
+                      Cart
+                    </Link>
+                </li>
                 <li className="nav-item dropdown">
                   <Link
                     className="nav-link dropdown-toggle"
@@ -42,11 +47,6 @@ export function Header() {
                     <li>
                       <Link className="dropdown-item" to="/products/new">
                         New Product
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className='dropdown-item' to="/CartedProducts">
-                        Cart
                       </Link>
                     </li>
                     <li>

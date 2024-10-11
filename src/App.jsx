@@ -8,6 +8,7 @@ import { LoginPage } from './LoginPage';
 import { ProductsIndexPage } from './ProductsIndexPage'
 import { ProductShowPage } from './ProductShowPage';
 import axios from 'axios'
+import { OrdersIndex } from './OrdersIndex';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
@@ -54,6 +55,14 @@ const router = createBrowserRouter([
         loader: () => axios.get('http://localhost:3000/carted_products.json').then((response) => { 
           console.log(response.data);
           return (response.data);
+        })
+      },
+      { 
+        path: '/orders',
+        element: <OrdersIndex />,
+        loader: () => axios.get('http://localhost:3000/orders.json').then((response) => { 
+          console.log(response.data);
+          return response.data;
         })
       }
     ],

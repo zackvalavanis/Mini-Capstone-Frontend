@@ -11,7 +11,8 @@ export function ProductsIndexPage () {
   const [ productVisible, setProductVisible ] = useState(false);
   const [ currentProduct, setCurrentProduct ] = useState ({});
   const [ carted_product, setCartedProduct] = useState([]);
-
+  const [showConfirmation, setShowConfirmation] = useState(false); // State for confirmation modal
+  const [confirmationMessage, setConfirmationMessage] = useState(''); // Message for confirmation modal
 
 
   const onShow = (product) => { 
@@ -31,13 +32,38 @@ export function ProductsIndexPage () {
     axios.post('http://localhost:3000/carted_products.json', params).then((response) => { 
       console.log(response.data);
       setCartedProduct([...carted_product, response.data])
+      setConfirmationMessage();
+      setShowConfirmation(true); // Show confirmation modal
       event.target.reset();
     })
   }
 
-
   return ( 
+
+
+    
     <div className="products-container">
+      <div id="carouselExampleFade" className="carousel slide carousel-fade">
+        <div className="carousel-inner">
+          <div className="carousel-item active">
+            <img src="..." className="d-block w-100" alt="..." />
+          </div>
+          <div className="carousel-item">
+            <img src="..." className="d-block w-100" alt="..." />
+          </div>
+          <div className="carousel-item">
+            <img src="..." className="d-block w-100" alt="..." />
+          </div>
+        </div>
+        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Previous</span>
+        </button>
+        <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Next</span>
+        </button>
+      </div>
       {products.map((product) => (
         <div className="card" key={product.id} style={{ width: '18rem', margin: '1rem' }}>
           <div className="card-body">
@@ -64,7 +90,7 @@ export function ProductsIndexPage () {
         <div>
         <Modal show={productVisible} onClose={onPageClose}>
           <ProductShowPage product={currentProduct} />
-          <h1>Add New Product</h1>
+          {/* <h1>Item</h1> */}
         <div>
           <form onSubmit={handleSubmit}>
           <div>
@@ -81,10 +107,21 @@ export function ProductsIndexPage () {
         </div>
         </Modal>
         </div>
+        <div className={`modal fade ${showConfirmation ? 'show' : ''}`} style={{ display: showConfirmation ? 'block' : 'none' }} tabIndex="-1" role="dialog">
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">Added to Cart</h5>
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" onClick={() => setShowConfirmation(false)}>Close</button>
+              </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
-      {/* <h6 className="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
-      <p className="card-text">Some quick example text to build on the card title and make up the bulk of the.</p>
-      <a href="#" className="card-link">Card link</a>
-      <a href="#" className="card-link">Another link</a> */}
+
+
+
