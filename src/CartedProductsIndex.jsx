@@ -47,7 +47,7 @@ export function CartedProductsIndex() {
           return (
             <div key={cp.id}>
               <p>Name: {cp.product.name}</p>
-              <p>Price: ${isNaN(price) ? 'N/A' : price.toFixed(2)}</p> {/* Handle NaN */}
+              <p>Price: ${isNaN(price) ? 'N/A' : price.toFixed(2)}</p> 
               <p>Quantity: {cp.quantity}</p>
               <hr />
             </div>
