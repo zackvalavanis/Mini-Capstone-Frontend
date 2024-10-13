@@ -5,6 +5,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { Modal } from './Modal';
 import { ProductShowPage } from './ProductShowPage';
 import axios from 'axios';
+import './ProductsIndexPage.css'
 
 export function ProductsIndexPage() {
   const products = useLoaderData();
@@ -12,6 +13,9 @@ export function ProductsIndexPage() {
   const [currentProduct, setCurrentProduct] = useState({});
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [confirmationMessage, setConfirmationMessage] = useState('');
+  const [searchFilter, setSearchFilter] = useState("");
+
+
 
   const onShow = (product) => {
     setProductVisible(true);
@@ -42,7 +46,8 @@ export function ProductsIndexPage() {
   return (
     <div className="container">
       <div className="row">
-        {products.map((product) => (
+        <p className='searchText'> Search: <input className='search' type='text' value={searchFilter} onChange={(event) => setSearchFilter(event.target.value)}></input></p>
+        {products.filter((product) => product.name.toLowerCase().includes(searchFilter.toLowerCase())).map((product) => (
           <div className="col-md-4" key={product.id} style={{ marginBottom: '1rem' }}>
             <div className="card h-100"> {/* Set height to 100% */}
               <div className="card-body d-flex flex-column"> {/* Flex column for vertical alignment */}

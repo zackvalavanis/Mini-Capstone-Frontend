@@ -1,9 +1,31 @@
 import { Link } from 'react-router-dom';
 import { LogoutLink } from './LogoutLink';
+import { useState, useEffect } from 'react';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import axios from 'axios';
+import './Header.css'
 
 export function Header() {
   let authenticationLinks;
+  let showUserName;
+  const [ currentUser, setCurrentUser ] = useState({});
+  
 
+  const getUserData = () => ( 
+    axios.get('http://localhost:3000/users/current_user.json').then((response) => { 
+      console.log(response.data);
+      if (response.data === null){ 
+        null 
+      } else { 
+        setCurrentUser(response.data);
+      }
+    })
+  )
+
+  useEffect(() => {
+    getUserData();
+  }, []);
+  
   // Check if JWT is present
   const isLoggedIn = localStorage.getItem('jwt') !== null;
   if (!isLoggedIn) {
@@ -24,6 +46,7 @@ export function Header() {
     );
   } else { 
     console.log(localStorage, 'User is logged in');
+    showUserName= <p>Welcome {currentUser.name}</p>  
     authenticationLinks = (
       <li>
         <LogoutLink className='dropdown-item' />
@@ -58,7 +81,7 @@ export function Header() {
                 </li>
                 <li className='nav-item'>
                   <Link className='nav-link active' aria-current='page' to="/CartedProducts">
-                    Cart
+                    <AddShoppingCartIcon />
                   </Link>
                 </li>
                 <li className="nav-item dropdown">
@@ -84,6 +107,13 @@ export function Header() {
                   </ul>
                 </li>
               </ul>
+                <p className="welcome_message">
+                  <Link to='/LoginPage'>
+                  {showUserName}
+                  </Link>
+                </p>
+              <div>
+              </div>
             </div>
           </div>
         </nav>

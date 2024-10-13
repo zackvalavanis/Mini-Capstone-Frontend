@@ -1,0 +1,8 @@
+.welcome_message {
+  text-align: center !important;
+  /* Centers text within the message */
+  margin: 0 !important;
+  /* Remove default margin, adjust as needed */
+  text-decoration: none !important;
+  color: black !important
+}

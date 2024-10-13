@@ -6,22 +6,6 @@ html {
   color: #333;
 }
 
-/* Container for all products */
-.products-container {
-  max-width: 1200px;
-  /* Limit container width */
-  margin: auto;
-  /* Center the container */
-  padding: 20px;
-  /* Add padding around the container */
-  display: flex;
-  /* Use Flexbox */
-  flex-wrap: wrap;
-  /* Allow wrapping of cards */
-  justify-content: center;
-  /* Center cards in the container */
-}
-
 /* Header styles */
 h4 {
   text-align: center;
@@ -31,35 +15,3 @@ h4 {
   margin-bottom: 30px;
   /* Space below the header */
 }
-
-/* Individual product card */
-.card {
-  background-color: #ffffff;
-  /* White background for each product */
-  border-radius: 20px;
-  /* Adjusted radius for a more subtle effect */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  /* Subtle shadow */
-  margin: 20px;
-  /* Increased space around each card */
-  padding: 15px;
-  /* Padding inside each card */
-  flex: 0 1 calc(25% - 40px);
-  /* Adjust to 4 cards per row, accounting for margin */
-  /* Change 25% to another value for more or fewer cards in a row */
-  display: flex;
-  /* Enable Flexbox for the card */
-  flex-direction: column;
-  /* Stack children vertically */
-  align-items: center;
-  /* Center children horizontally */
-}
-
-/* Card image */
-.card img {
-  border-radius: 10px;
-  /* Rounded corners for images */
-  width: 100%;
-  /* Full width */
-  height: auto;
-  /* Maint
