@@ -34,7 +34,13 @@ export function SignupPage() {
       <form onSubmit={handleSubmit}>
 
         <div>
-          Name: <input name="name" type="text" value={name} onChange={(event) => setName(event.target.value)}/>
+          Name: <input 
+          name="name" 
+          type="text" 
+          value={name} 
+          onChange={(event) => setName(event.target.value)}
+          maxLength={20}
+          />
           <small>{20 - name.length > 0 
             ? `${20 - name.length} characters remaining`
             : 'Maximum character limit reached'

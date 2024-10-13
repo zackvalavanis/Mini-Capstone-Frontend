@@ -1,7 +1,35 @@
-import { Link } from 'react-router-dom'; // This import is present but not currently used. Use Link instead of <a> for routing.
+import { Link } from 'react-router-dom';
 import { LogoutLink } from './LogoutLink';
 
 export function Header() {
+  let authenticationLinks;
+
+  // Check if JWT is present
+  const isLoggedIn = localStorage.getItem('jwt') !== null;
+  if (!isLoggedIn) {
+    console.log(localStorage, 'User is logged out');
+    authenticationLinks = (
+      <>
+        <li>
+          <Link className="dropdown-item" to="/LoginPage">
+            Login
+          </Link>
+        </li>
+        <li>
+          <Link className='dropdown-item' to="/SignupPage">
+            Signup
+          </Link>
+        </li>
+      </>
+    );
+  } else { 
+    console.log(localStorage, 'User is logged in');
+    authenticationLinks = (
+      <li>
+        <LogoutLink className='dropdown-item' />
+      </li>
+    );
+  }
   return (
     <div>
       <header>
@@ -29,9 +57,9 @@ export function Header() {
                   </Link>
                 </li>
                 <li className='nav-item'>
-                    <Link className='nav-link active' aria-current='page' to="/CartedProducts">
-                      Cart
-                    </Link>
+                  <Link className='nav-link active' aria-current='page' to="/CartedProducts">
+                    Cart
+                  </Link>
                 </li>
                 <li className="nav-item dropdown">
                   <Link
@@ -52,19 +80,7 @@ export function Header() {
                     <li>
                       <hr className="dropdown-divider" />
                     </li>
-                    <li>
-                      <Link className="dropdown-item" to="/LoginPage">
-                        Login
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="dropdown-item" to="/SignupPage">
-                        Signup
-                      </Link>
-                    </li>
-                    <li>
-                      <LogoutLink className='dropdown-item' />
-                    </li>
+                    {authenticationLinks}
                   </ul>
                 </li>
               </ul>
